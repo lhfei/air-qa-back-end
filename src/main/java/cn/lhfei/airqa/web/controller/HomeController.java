@@ -1,4 +1,4 @@
-package cn.lhfei.airqa;
+package cn.lhfei.airqa.web.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -8,8 +8,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import cn.lhfei.airqa.web.model.SimpleModel;
 
 /**
  * Handles requests for the application home page.
@@ -35,6 +40,24 @@ public class HomeController {
 		
 		return "home";
 		
+	}
+	
+	@RequestMapping("/get/{name}")
+	@ResponseBody
+	public SimpleModel get(@PathVariable String name){
+		SimpleModel model = new SimpleModel();
+		model.setName(name);
+		model.setCreate(new Date());
+		model.setDesc("request by get");
+		
+		return model;
+	}
+	
+	@RequestMapping(value="/create", method=RequestMethod.POST)
+	@ResponseBody
+	public SimpleModel create(@RequestBody SimpleModel model){
+		logger.debug(model.toString());
+		return model;
 	}
 	
 }

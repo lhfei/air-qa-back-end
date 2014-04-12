@@ -12,7 +12,7 @@
 
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
-	<resources mapping="/resources/**" location="/resources/" />
+	<mvc:resources mapping="/resources/**" location="/resources/" />
 	
 	<!-- static resource -->
 	<mvc:resources location="/images/" mapping="/images/**"/>
@@ -26,8 +26,7 @@
 	
 	<bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping" />
 	
-	<bean id="jsonHttpMessageConverter"
-		class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+	<bean id="jsonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
 		<property name="prefixJson" value="false" />
 		<property name="supportedMediaTypes" value="application/json" />
 	</bean>
@@ -35,17 +34,21 @@
 	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
 		<property name="messageConverters">
 			<list>
-				<bean
-					class="org.springframework.http.converter.ByteArrayHttpMessageConverter" />
-				<bean
-					class="org.springframework.http.converter.StringHttpMessageConverter" />
+				<!-- <bean class="org.springframework.http.converter.ByteArrayHttpMessageConverter" />
+				<bean class="org.springframework.http.converter.StringHttpMessageConverter" />
 				<bean class="org.springframework.http.converter.FormHttpMessageConverter" />
-				<bean
-					class="org.springframework.http.converter.xml.SourceHttpMessageConverter" />
-				<bean
-					class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter" />
+				<bean class="org.springframework.http.converter.xml.SourceHttpMessageConverter" /> -->
+				
+				<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+					<!-- <property name="objectMapper" ref="customObjectMapper"></property> -->
+				</bean>
+				
 			</list>
 		</property>
 	</bean>	
 	
+	
+	<bean id="customObjectMapper"
+		class="cn.lhfei.airqa.web.mapper.CustomObjectMapper">
+	</bean>
 </beans>
