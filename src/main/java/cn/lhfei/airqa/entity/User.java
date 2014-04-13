@@ -1,130 +1,190 @@
-/*
- * Copyright 2010-2011 the original author or authors.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package cn.lhfei.airqa.entity;
 
+import java.io.Serializable;
+import javax.persistence.*;
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Transient;
 
 /**
- * @version 0.1
- *
- * @author Hefei Li
- *
- * @since Apr 7, 2014
+ * The persistent class for the user database table.
+ * 
  */
 @Entity
-@Table (name = "blog_user")
-public class User {
+@NamedQuery(name="User.findAll", query="SELECT u FROM User u")
+public class User implements Serializable {
+	private static final long serialVersionUID = 1L;
 
-    @Id
-    @Column (name = "username")
-    private String userName;
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="USER_ID")
+	private int userId;
 
-    @Column (name = "first_name", nullable = false)
-    private String firstName;
+	@Column(name="ACTIVITY_STATUS")
+	private int activityStatus;
 
-    @Column (name = "last_name", nullable = false)
-    private String lastName;
+	private String city;
 
-    @Column (name = "password", nullable = false)
-    private String password;
+	private String county;
 
-    @Column (name = "created_on", nullable = false)
-    private Date createdOn;
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="CREATE_TIME")
+	private Date createTime;
 
-    @Transient
-    private Date lastLoginOn;
+	@Column(name="DATA_STATUS")
+	private int dataStatus;
 
-    public User() {
-    }
+	private String email;
 
-    public User(String userName, String firstName, String lastName, String password) {
-        this.userName = userName;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.password = password;
-    }
+	private int gender;
 
-    public String getUserName() {
-        return userName;
-    }
+	@Column(name="HOUSE_NUMBER")
+	private String houseNumber;
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
+	@Column(name="ID_CARD")
+	private String idCard;
 
-    public String getFirstName() {
-        return firstName;
-    }
+	private String mobile;
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+	private String password;
 
-    public String getLastName() {
-        return lastName;
-    }
+	private String province;
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+	private String remark;
 
-    public String getPassword() {
-        return password;
-    }
+	@Column(name="USER_NAME")
+	private String userName;
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+	private String zone;
 
-    public Date getCreatedOn() {
-        return createdOn;
-    }
+	public User() {
+	}
 
-    public void setCreatedOn(Date createdOn) {
-        this.createdOn = createdOn;
-    }
+	public int getUserId() {
+		return this.userId;
+	}
 
-    public Date getLastLoginOn() {
-        return lastLoginOn;
-    }
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
 
-    public void setLastLoginOn(Date lastLoginOn) {
-        this.lastLoginOn = lastLoginOn;
-    }
+	public int getActivityStatus() {
+		return this.activityStatus;
+	}
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+	public void setActivityStatus(int activityStatus) {
+		this.activityStatus = activityStatus;
+	}
 
-        User user = (User) o;
+	public String getCity() {
+		return this.city;
+	}
 
-        return userName.equals(user.userName);
-    }
+	public void setCity(String city) {
+		this.city = city;
+	}
 
-    @Override
-    public int hashCode() {
-        return 13 * userName.hashCode();
-    }
-    
+	public String getCounty() {
+		return this.county;
+	}
+
+	public void setCounty(String county) {
+		this.county = county;
+	}
+
+	public Date getCreateTime() {
+		return this.createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+
+	public int getDataStatus() {
+		return this.dataStatus;
+	}
+
+	public void setDataStatus(int dataStatus) {
+		this.dataStatus = dataStatus;
+	}
+
+	public String getEmail() {
+		return this.email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public int getGender() {
+		return this.gender;
+	}
+
+	public void setGender(int gender) {
+		this.gender = gender;
+	}
+
+	public String getHouseNumber() {
+		return this.houseNumber;
+	}
+
+	public void setHouseNumber(String houseNumber) {
+		this.houseNumber = houseNumber;
+	}
+
+	public String getIdCard() {
+		return this.idCard;
+	}
+
+	public void setIdCard(String idCard) {
+		this.idCard = idCard;
+	}
+
+	public String getMobile() {
+		return this.mobile;
+	}
+
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
+	}
+
+	public String getPassword() {
+		return this.password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getProvince() {
+		return this.province;
+	}
+
+	public void setProvince(String province) {
+		this.province = province;
+	}
+
+	public String getRemark() {
+		return this.remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
+
+	public String getUserName() {
+		return this.userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getZone() {
+		return this.zone;
+	}
+
+	public void setZone(String zone) {
+		this.zone = zone;
+	}
+
 }
