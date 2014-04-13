@@ -16,8 +16,6 @@
 
 package cn.lhfei.airqa.dao;
 
-import java.util.Date;
-
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -38,9 +36,12 @@ public class UserDaoTest extends BaseTestSuit {
 	public void create() {
 		log.debug("create User start .");
 		
-		 User user = new User("Hefei Li", "Hefei", "Li", "Lhfei");
-		 user.setCreatedOn(new Date());
-		 
+		 User user = new User();
+		 //user.setUserId(1);
+		 user.setUserName("高飞");
+		 user.setPassword("123");
+		 user.setEmail("939276024");
+		 user.setActivityStatus(0);
 		 userDao.create(user);
 	}
 	

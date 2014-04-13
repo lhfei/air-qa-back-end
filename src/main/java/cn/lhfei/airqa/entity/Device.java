@@ -41,7 +41,6 @@ public class Device implements Serializable {
 
 	private String operator;
 
-	//bi-directional many-to-one association to CheckRecord
 	@OneToMany(mappedBy="device")
 	private List<CheckRecord> checkRecords;
 
