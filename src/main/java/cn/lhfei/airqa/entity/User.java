@@ -15,7 +15,6 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="USER_ID")
 	private int userId;
 
@@ -43,13 +42,27 @@ public class User implements Serializable {
 	@Column(name="ID_CARD")
 	private String idCard;
 
+	@Column(name="KPI_ID")
+	private int kpiId;
+
 	private String mobile;
+	
+	@Column(name="ORIGN")
+	private int orign;
+
+	@Column(name="ORIGN_CODE")
+	private String orignCode;
 
 	private String password;
+
+	private String privoder;
 
 	private String province;
 
 	private String remark;
+
+	@Column(name="USER_ALIAS")
+	private String userAlias;
 
 	@Column(name="USER_NAME")
 	private String userName;
@@ -139,6 +152,14 @@ public class User implements Serializable {
 		this.idCard = idCard;
 	}
 
+	public int getKpiId() {
+		return this.kpiId;
+	}
+
+	public void setKpiId(int kpiId) {
+		this.kpiId = kpiId;
+	}
+
 	public String getMobile() {
 		return this.mobile;
 	}
@@ -147,12 +168,36 @@ public class User implements Serializable {
 		this.mobile = mobile;
 	}
 
+	public int getOrign() {
+		return this.orign;
+	}
+
+	public void setOrign(int orign) {
+		this.orign = orign;
+	}
+
+	public String getOrignCode() {
+		return this.orignCode;
+	}
+
+	public void setOrignCode(String orignCode) {
+		this.orignCode = orignCode;
+	}
+
 	public String getPassword() {
 		return this.password;
 	}
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getPrivoder() {
+		return this.privoder;
+	}
+
+	public void setPrivoder(String privoder) {
+		this.privoder = privoder;
 	}
 
 	public String getProvince() {
@@ -169,6 +214,14 @@ public class User implements Serializable {
 
 	public void setRemark(String remark) {
 		this.remark = remark;
+	}
+
+	public String getUserAlias() {
+		return this.userAlias;
+	}
+
+	public void setUserAlias(String userAlias) {
+		this.userAlias = userAlias;
 	}
 
 	public String getUserName() {

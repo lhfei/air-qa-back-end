@@ -40,4 +40,5 @@
 	
 	
 	<import resource="classpath*:spring/data-access-context.xml"/>
+	<import resource="classpath*:spring/shiro.xml"/>
 </beans>

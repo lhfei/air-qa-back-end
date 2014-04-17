@@ -5,6 +5,10 @@ import java.util.Date;
 import java.util.Locale;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,10 +52,25 @@ public class HomeController {
 
 	}
 
-	@RequestMapping(value = "/login")
+	@RequestMapping(value = "/loginForm")
 	public String loginForm(UserModel user) {
 		logger.info("登录认证.");
-		return "home";
+
+		Subject currentUser = SecurityUtils.getSubject();
+		UsernamePasswordToken token = new UsernamePasswordToken(
+				user.getEmail(), user.getPassword());
+		token.setRememberMe(true);
+		try {
+			currentUser.login(token);
+		} catch (AuthenticationException e) {
+			e.printStackTrace();
+			return "redirect:/";
+		}
+		if (currentUser.isAuthenticated()) {
+			return "home";
+		} else {
+			return "redirect:/";
+		}
 	}
 
 	@RequestMapping(value = "/register")
@@ -65,15 +84,25 @@ public class HomeController {
 		logger.info("用户提交注册.");
 
 		// 确认用户密码是否输入正确
-		if (!StringUtils.isEmpty(user.getPassword())&&StringUtils.endsWith(user.getPassword(), user.getRePassword())) {
+		if (!StringUtils.isEmpty(user.getPassword())
+				&& StringUtils.endsWith(user.getPassword(),
+						user.getRePassword())) {
 			userService.create(user);
-			return "register";
+			return "redirect:/";
 		} else {
 			model.addAttribute("register_msg", "注册信息格式不正确，请重新输入.");
 			logger.info("注册信息格式不正确，请重新输入.");
 			return "forward:register";
 		}
 
+	}
+
+	@RequestMapping(value = "/logout")
+	public String logout() {
+		logger.info("用户退出系统.");
+		// 使用权限管理工具进行用户的退出，跳出登录，给出提示信息
+		SecurityUtils.getSubject().logout();
+		return "redirect:/";
 	}
 
 	@RequestMapping("/get/{name}")

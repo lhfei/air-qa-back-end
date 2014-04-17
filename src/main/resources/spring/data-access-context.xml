@@ -57,7 +57,7 @@
 			<tx:method name="del*" propagation="REQUIRED"/>
 			<tx:method name="modify*" propagation="REQUIRED"/>
 			<tx:method name="get*" propagation="SUPPORTS"/>
-			<tx:method name="find*" propagation="NEVER" />
+			<tx:method name="find*" propagation="REQUIRED" />
 			<!-- <tx:method name="*" read-only="true" /> -->
 		</tx:attributes>
 	</tx:advice>

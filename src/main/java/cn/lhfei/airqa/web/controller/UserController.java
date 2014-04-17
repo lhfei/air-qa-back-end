@@ -13,19 +13,26 @@ import cn.lhfei.airqa.web.model.SimpleModel;
  * Handles requests for the application home page.
  */
 @Controller
+@RequestMapping(value = "/user")
 public class UserController {
-	
-	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
-	
-	 
- 
-	
- 
-	
-	@RequestMapping(value="/userInfo", method=RequestMethod.POST)
-	public String create(@RequestBody SimpleModel model){
+
+	private static final Logger logger = LoggerFactory
+			.getLogger(UserController.class);
+
+	@RequestMapping(value = "/userInfo")
+	public String userInfo() {
+		return "user/userInfo";
+	}
+
+	@RequestMapping(value = "/userInfo", method = RequestMethod.POST)
+	public String create(@RequestBody SimpleModel model) {
 		logger.debug(model.toString());
 		return "";
 	}
-	
+
+	@RequestMapping(value = "/terminalBinder")
+	public String terminalBinder() {
+		return "user/terminalBinder";
+	}
+
 }

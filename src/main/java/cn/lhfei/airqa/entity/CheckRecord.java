@@ -86,9 +86,11 @@ public class CheckRecord implements Serializable {
 	/**
 	 * 终端对象
 	 */
-	@ManyToOne
+	/*@ManyToOne
 	@JoinColumn(name="DEVICE_ID")
-	private Device device;
+	private Device device;*/
+	@Column(name="DEVICE_ID")
+	private String deviceId;
 
 	public CheckRecord() {
 	}
@@ -180,13 +182,13 @@ public class CheckRecord implements Serializable {
 	public void setRecordNum(String recordNum) {
 		this.recordNum = recordNum;
 	}
-
-	public Device getDevice() {
-		return this.device;
+	
+	public String getDeviceId() {
+		return deviceId;
 	}
 
-	public void setDevice(Device device) {
-		this.device = device;
+	public void setDeviceId(String deviceId) {
+		this.deviceId = deviceId;
 	}
 
 }

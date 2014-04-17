@@ -4,32 +4,75 @@
 <head>
 <title>用户登录</title>
 <style type="text/css">
-table {
-	margin: 0 auto;
+.queryTable{
+	width:300px;
+	border: 0px solid #cccccc;
+	padding:0; 
+	margin:0 0;
+	border-collapse: collapse;
+}
+.queryTable tr{
+	height: 30px;
 }
 
-table #btn_td{
-	text-align: center;
+.queryTable th{
+	font-weight: normal;
+}
+
+.queryTable td {
+	align:center;
+	border: 0px solid #cccccc;
+	background: #fff;
+	font-size:12px;
+	padding: 3px 3px 3px 3px;
+	color: #000;
+	padding: 0px;
+}
+
+.queryTable input{
+	height:20px;
+	width:150px;
+	border: 1px solid #cccccc;
+}
+
+input:hover{
+	height:20px;
+	width:150px;
+	border: 1px solid #0066CC;
+}
+
+#btn_td input{
+	height:24px;
+	width:50px;
+	border: 1px solid #cccccc;
+}
+#btn_td input:hover{
+	height:24px;
+	width:50px;
+	border: 1px solid #cccccc;
 }
 </style>
 </head>
 <body>
-	<form action="./login" method="post" name="loginform">
-		<table>
+	<div align="center">
+	<form action="./loginForm" method="post" name="loginform">
+		<table class="queryTable">
 			<tr>
-				<td>邮箱：</td>
-				<td><input type="text" name="email" value="gxpt"></td>
+				<th>邮&nbsp;&nbsp;箱：</th>
+				<td><input type="text" name="email"></td>
 			</tr>
 			<tr>
-				<td>密&nbsp;&nbsp;码：</td>
-				<td><input type="password" name="password" value="123456"></td>
+				<th>密&nbsp;&nbsp;码：</th>
+				<td><input type="password" name="password"></td>
 			</tr>
 			<tr>
-				<td id="btn_td" colspan="2"><input type="submit" value="登录"><input
-					type="button" value="注册" onclick="register()"></td>
+				<td id="btn_td" colspan="2">
+					<input type="submit" value="登录">&nbsp;&nbsp;&nbsp;&nbsp;
+					<input type="button" value="注册" onclick="register()"></td>
 			</tr>
 		</table>
 	</form>
+	</div>
 </body>
 <script type="text/javascript">
 	function register() {

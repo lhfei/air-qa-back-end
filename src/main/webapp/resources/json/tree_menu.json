@@ -14,4 +14,23 @@
         "text": "账号管理",
         "attributes":{"url":"user/manager"}
      }]
-}]
+},{
+	"id": 2,
+    "text": "主数据维护",
+    "children": [{
+        "id": 11,
+        "text": "厂家信息维护",
+        "attributes":{"url":"user/userInfo"}
+    },{
+	    "id": 12,
+	    "text": "终端信息维护",
+	     "attributes":{"url":"user/bind"}
+    },{
+        "id": 13,
+        "text": "客户信息维护",
+        "attributes":{"url":"user/manager"}
+     },{
+        "id": 13,
+        "text": "终端绑定管理",
+        "attributes":{"url":"user/manager"}
+     }]
