@@ -21,6 +21,8 @@ import java.util.List;
 
 import org.hibernate.criterion.Criterion;
 
+import cn.lhfei.airqa.common.Page;
+
 /**
  * @version 0.1
  *
@@ -35,4 +37,6 @@ public interface AbstractHibernate4DaoSupport<E, I extends Serializable> {
     void saveOrUpdate(E e);
     void delete(E e);
     List<E> findByCriteria(Criterion criterion);
+    
+    Page findPageByCriteria(Criterion criterion,Page<E> page);
 }

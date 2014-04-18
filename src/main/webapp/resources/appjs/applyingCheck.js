@@ -3,9 +3,13 @@
  */
 var contentArr = [{"attrname":"kbiName"},{"attrname":"kpiCode"},{"attrname":"kpiRemark"}];
 $(function() {
+	var recordNum = $("#recordNum").val();
 	$('#recordList').datagrid({
-		loadFilter : pagerFilter
-	}).datagrid('loadData', getData());
+		url:'./findListCheck',
+		queryParams:{
+			recordNum:recordNum
+		}
+	});
 	addTableRow();
 	resizeDiv('centerArea');
 	$("input[name='recordNum']").focus();

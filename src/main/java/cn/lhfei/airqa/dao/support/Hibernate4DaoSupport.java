@@ -23,7 +23,10 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Projections;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import cn.lhfei.airqa.common.Page;
 
 /**
  * @version 0.1
@@ -64,6 +67,23 @@ public abstract class Hibernate4DaoSupport<E, I extends Serializable> implements
         Criteria criteria = getCurrentSession().createCriteria(entityClass);
         criteria.add(criterion);
         return criteria.list();
+    }
+    
+    @Override
+    public Page<E> findPageByCriteria(Criterion criterion,Page<E> page){
+    	Criteria criteria = getCurrentSession().createCriteria(entityClass);
+    	int count = ((Long)criteria.setProjection(Projections.rowCount()).uniqueResult()).intValue();
+    	criteria.setProjection(null);
+    	if(criterion != null){
+    		criteria.add(criterion);
+    	}
+    	page.setTotalCount(count);
+    	int startCount = (page.getCurPage() -1) * page.getPageSize();
+    	int endCount = startCount + page.getPageSize();
+    	criteria.setFirstResult(startCount);
+    	criteria.setMaxResults(endCount);
+    	page.setResult(criteria.list());
+    	return page;
     }
    
     // PRIVATE FIELDS

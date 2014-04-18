@@ -3,7 +3,11 @@ package cn.lhfei.airqa.web.controller;
 import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,11 +15,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import cn.lhfei.airqa.common.Page;
 import cn.lhfei.airqa.service.ICheckRecordService;
 import cn.lhfei.airqa.web.model.CheckRecordBo;
 
@@ -62,6 +66,25 @@ public class CheckRecordController {
         		String.valueOf(second);
         
 		return recordNum;
+	}
+	
+	@RequestMapping(value = "/findListCheck", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String,Object> findListCheck(String recordNum,HttpServletRequest request){
+		Map<String,Object> result = new HashMap<String,Object>();
+		try{
+			int pageNo = Integer.parseInt(request.getParameter("page"));
+			int rows = Integer.parseInt(request.getParameter("rows")); 
+			Page<CheckRecordBo> page = new Page<CheckRecordBo>();
+			page.setCurPage(pageNo);
+			page.setPageSize(rows);
+			page = checkRecordService.findListCheck(page, recordNum);
+			result.put("total", page.getTotalCount());
+			result.put("rows", page.getResult());
+		}catch(RuntimeException e){
+			e.printStackTrace();
+		}
+		return result;
 	}
 	
 	@RequestMapping(value = "/createCheck", method = RequestMethod.POST)
