@@ -3,7 +3,8 @@
  */
 var contentArr = [{"attrname":"kbiName"},{"attrname":"kpiCode"},{"attrname":"kpiRemark"}];
 $(function() {
-	var recordNum = $("#recordNum").val();
+	getRecordNum();
+	var recordNum = $("input[name='recordNum']").val();
 	$('#recordList').datagrid({
 		url:'./findListCheck',
 		queryParams:{
