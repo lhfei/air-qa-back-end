@@ -138,12 +138,23 @@ function addTableRow(){
 	var table = $("#qaKpiTable");
 	var tr=$("<tr></tr>");
 	tr.appendTo($(table)); 
+	var type = "";
 	$.each(contentArr,function(i,data){
-		var td=$("<td><input type='text' name='"+data.attrname+"'/></td>");
+		var td= "";
+		if(i == 0){
+			td = $("<td><input type='hidden' name='qaKpiBos["+kpiRowCount+"].kpiId'/>"+
+					"<input type='hidden' name='qaKpiBos["+kpiRowCount+"].kpiValue'/>"+
+					"<input type='hidden' name='qaKpiBos["+kpiRowCount+"].recordId'/>"+
+					"<input type='text' name='qaKpiBos["+kpiRowCount+"]."+data.attrname+"'/></td>");
+		}else{
+			td = $("<td><input type='text' name='qaKpiBos["+kpiRowCount+"]."+data.attrname+"'/></td>");
+		}
 		td.appendTo(tr);
 	});
-	var operatetd=$("<td width='80'><img alt='' style='cursor:pointer;' title='保存' onclick='saveTableRow(this)' src='${basePath}/resources/themes/icons/ok.png'/>&nbsp;&nbsp;&nbsp;&nbsp;<img alt='' style='cursor:pointer;' title='删除' onclick='removeTableRow(this)' src='${basePath}/resources/themes/icons/edit_remove.png'/></td>");
+	var operatetd=$("<td width='80'><img alt='' style='cursor:pointer;' title='保存' onclick='saveTableRow(this)' src='${basePath}/resources/themes/icons/ok.png'/>"+
+			"&nbsp;&nbsp;&nbsp;&nbsp;<img alt='' style='cursor:pointer;' title='删除' onclick='removeTableRow(this)' src='${basePath}/resources/themes/icons/edit_remove.png'/></td>");
 	operatetd.appendTo(tr);
+	kpiRowCount++;
 }
 </script>
 </head>
@@ -201,7 +212,7 @@ function addTableRow(){
 			</div>
 		</div>
 	</div>
-	<div id="dataFormDiv" class="easyui-dialog" title="家庭检测申请" data-options="iconCls:'icon-save',closed:'true'" style="width：600px;height:450px;padding:5px;">
+	<div id="dataFormDiv" class="easyui-dialog" title="家庭检测申请" data-options="iconCls:'icon-save',closed:'true'">
 		<form method="post" action="./createCheck" id="applyingCheckForm" name="applyingCheckForm">
 		<table class="commonTable">
 			<tr>
@@ -238,12 +249,14 @@ function addTableRow(){
 				</td>
 			</tr>
 		</table>
+		<!--  </form>
 		<br/>
+		<form method="post" action="./createQaKpiList" id="qaKpiForm" name="qaKpiForm">-->
 		<table id="kpiParentTable" class="commonTable">
 			<tr>
 				<th width="155">
-					<span>检测项目</span>
-					<div style="text-align: right;float: right;">
+					<span style="float: left;">检测项目</span>
+					<div style="margin:0px;float: right;">
 						<img alt="" style="cursor:pointer;" title="新增" onclick="addTableRow()" src="${basePath}/resources/themes/icons/edit_add.png"/>
 					</div>
 				</th>
@@ -262,8 +275,11 @@ function addTableRow(){
 			</tr>
 		</table>
 		<div align="center" id="btn_td" style="margin: 20px;">
-			<input type="submit" value="登录">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<input type="button" value="注册" onclick="clearData()">
+			 <a href="#" id="saveBtn" class="easyui-linkbutton" onclick="saveData();" data-options="iconCls:'icon-ok'">保存</a>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="#" id="cancelBtn" class="easyui-linkbutton" data-options="iconCls:'icon-undo'">返回</a>
+			<!--<input type="submit" value="登录">
+			<input type="button" value="注册" onclick="clearData()"> -->
 		</div>
 		</form>
 	</div>

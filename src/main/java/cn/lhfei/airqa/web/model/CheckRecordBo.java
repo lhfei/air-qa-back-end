@@ -1,19 +1,13 @@
 package cn.lhfei.airqa.web.model;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.util.Date;
-
-import cn.lhfei.airqa.web.provider.SimpleJsonDateSerializer;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-
 
 /**
  * @author liuwu
  * @description 表格检测记录
- *
+ * 
  */
 @JsonAutoDetect
 public class CheckRecordBo implements Serializable {
@@ -22,11 +16,10 @@ public class CheckRecordBo implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
 	/**
 	 * 记录ID
 	 */
-	private int recordId;
+	private String recordId;
 
 	/**
 	 * 通信地址
@@ -46,25 +39,24 @@ public class CheckRecordBo implements Serializable {
 	/**
 	 * 检测费用
 	 */
-	private BigDecimal cost;
+	private String cost;
 
 	/**
 	 * 位置
 	 */
 	private String location;
 
-	@JsonSerialize(using=SimpleJsonDateSerializer.class)
-	private Date operatedTime;
+	private String operatedTime;
 
 	/**
 	 * 缴费状态
 	 */
-	private int paid;
+	private String paid;
 
 	/**
 	 * 检测状态
 	 */
-	private int phase;
+	private String phase;
 
 	/**
 	 * 联系电话
@@ -84,16 +76,16 @@ public class CheckRecordBo implements Serializable {
 	public CheckRecordBo() {
 	}
 
-	public int getRecordId() {
-		return this.recordId;
+	public String getRecordId() {
+		return recordId;
 	}
 
-	public void setRecordId(int recordId) {
+	public void setRecordId(String recordId) {
 		this.recordId = recordId;
 	}
 
 	public String getAddress() {
-		return this.address;
+		return address;
 	}
 
 	public void setAddress(String address) {
@@ -101,7 +93,7 @@ public class CheckRecordBo implements Serializable {
 	}
 
 	public String getAgent() {
-		return this.agent;
+		return agent;
 	}
 
 	public void setAgent(String agent) {
@@ -109,55 +101,55 @@ public class CheckRecordBo implements Serializable {
 	}
 
 	public String getContact() {
-		return this.contact;
+		return contact;
 	}
 
 	public void setContact(String contact) {
 		this.contact = contact;
 	}
 
-	public BigDecimal getCost() {
-		return this.cost;
+	public String getCost() {
+		return cost;
 	}
 
-	public void setCost(BigDecimal cost) {
+	public void setCost(String cost) {
 		this.cost = cost;
 	}
 
 	public String getLocation() {
-		return this.location;
+		return location;
 	}
 
 	public void setLocation(String location) {
 		this.location = location;
 	}
 
-	public Date getOperatedTime() {
-		return this.operatedTime;
+	public String getOperatedTime() {
+		return operatedTime;
 	}
 
-	public void setOperatedTime(Date operatedTime) {
+	public void setOperatedTime(String operatedTime) {
 		this.operatedTime = operatedTime;
 	}
 
-	public int getPaid() {
-		return this.paid;
+	public String getPaid() {
+		return paid;
 	}
 
-	public void setPaid(int paid) {
+	public void setPaid(String paid) {
 		this.paid = paid;
 	}
 
-	public int getPhase() {
-		return this.phase;
+	public String getPhase() {
+		return phase;
 	}
 
-	public void setPhase(int phase) {
+	public void setPhase(String phase) {
 		this.phase = phase;
 	}
 
 	public String getPhone() {
-		return this.phone;
+		return phone;
 	}
 
 	public void setPhone(String phone) {
@@ -165,13 +157,13 @@ public class CheckRecordBo implements Serializable {
 	}
 
 	public String getRecordNum() {
-		return this.recordNum;
+		return recordNum;
 	}
 
 	public void setRecordNum(String recordNum) {
 		this.recordNum = recordNum;
 	}
-	
+
 	public String getDeviceId() {
 		return deviceId;
 	}

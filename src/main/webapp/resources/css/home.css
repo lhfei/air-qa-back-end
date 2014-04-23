@@ -1,0 +1,11 @@
+.layoutTab {
+	margin: 0 auto;
+}
+
+.layoutTab td {
+	padding: 0px;
+}
+
+.layoutTab #btn_td {
+	text-align: center;
+}

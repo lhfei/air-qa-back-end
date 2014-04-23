@@ -1,41 +1,38 @@
 package cn.lhfei.airqa.entity;
 
 import java.io.Serializable;
-import javax.persistence.*;
-import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 
 /**
  * The persistent class for the company database table.
  * 
  */
 @Entity
-@NamedQuery(name="Company.findAll", query="SELECT c FROM Company c")
-public class Company implements Serializable {
+@NamedQuery(name = "Company.findAll", query = "SELECT c FROM Company c")
+public class Company extends BaseAttr implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="COMPANY_ID")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "COMPANY_ID")
 	private int companyId;
 
 	private String address;
 
 	private String city;
 
-	@Column(name="COMPANY_TITLE")
+	@Column(name = "COMPANY_TITLE")
 	private String companyTitle;
 
 	private String contact;
 
 	private String county;
-
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="CREATE_TIME")
-	private Date createTime;
-
-	@Column(name="DATA_STATUS")
-	private int dataStatus;
 
 	private String email;
 
@@ -94,22 +91,6 @@ public class Company implements Serializable {
 
 	public void setCounty(String county) {
 		this.county = county;
-	}
-
-	public Date getCreateTime() {
-		return this.createTime;
-	}
-
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
-	}
-
-	public int getDataStatus() {
-		return this.dataStatus;
-	}
-
-	public void setDataStatus(int dataStatus) {
-		this.dataStatus = dataStatus;
 	}
 
 	public String getEmail() {

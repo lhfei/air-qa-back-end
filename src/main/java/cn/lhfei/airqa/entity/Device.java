@@ -1,16 +1,9 @@
 package cn.lhfei.airqa.entity;
 
 import java.io.Serializable;
+import javax.persistence.*;
 import java.util.Date;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.NamedQuery;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import java.util.List;
 
 
 /**
@@ -48,8 +41,9 @@ public class Device implements Serializable {
 
 	private String operator;
 
-	/*@OneToMany(mappedBy="device")
-	private List<CheckRecord> checkRecords;*/
+	//bi-directional many-to-one association to CheckRecord
+	@OneToMany(mappedBy="device")
+	private List<CheckRecord> checkRecords;
 
 	public Device() {
 	}
@@ -117,4 +111,27 @@ public class Device implements Serializable {
 	public void setOperator(String operator) {
 		this.operator = operator;
 	}
+
+	public List<CheckRecord> getCheckRecords() {
+		return this.checkRecords;
+	}
+
+	public void setCheckRecords(List<CheckRecord> checkRecords) {
+		this.checkRecords = checkRecords;
+	}
+
+	public CheckRecord addCheckRecord(CheckRecord checkRecord) {
+		getCheckRecords().add(checkRecord);
+		checkRecord.setDevice(this);
+
+		return checkRecord;
+	}
+
+	public CheckRecord removeCheckRecord(CheckRecord checkRecord) {
+		getCheckRecords().remove(checkRecord);
+		checkRecord.setDevice(null);
+
+		return checkRecord;
+	}
+
 }

@@ -7,9 +7,8 @@ import java.util.Date;
 
 
 /**
- * @author liuwu
- * @description 表格检测记录
- *
+ * The persistent class for the check_record database table.
+ * 
  */
 @Entity
 @Table(name="check_record")
@@ -17,80 +16,38 @@ import java.util.Date;
 public class CheckRecord implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * 记录ID
-	 */
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="RECORD_ID")
 	private int recordId;
 
-	/**
-	 * 通信地址
-	 */
-	@Column(name="ADDRESS")
 	private String address;
 
-	/**
-	 * 委托单位/个人
-	 */
-	@Column(name="AGENT")
 	private String agent;
 
-	/**
-	 * 联系人
-	 */
-	@Column(name="CONTACT")
 	private String contact;
 
-	/**
-	 * 检测费用
-	 */
-	@Column(name="COST")
 	private BigDecimal cost;
 
-	/**
-	 * 位置
-	 */
-	@Column(name="LOCATION")
 	private String location;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="OPERATED_TIME")
 	private Date operatedTime;
 
-	/**
-	 * 缴费状态
-	 */
-	@Column(name="PAID")
 	private int paid;
 
-	/**
-	 * 检测状态
-	 */
-	@Column(name="PHASE")
 	private int phase;
 
-	/**
-	 * 联系电话
-	 */
-	@Column(name="PHONE")
 	private String phone;
 
-	/**
-	 * 检测单号
-	 */
 	@Column(name="RECORD_NUM")
 	private String recordNum;
 
-	/**
-	 * 终端对象
-	 */
-	/*@ManyToOne
+	//bi-directional many-to-one association to Device
+	@ManyToOne
 	@JoinColumn(name="DEVICE_ID")
-	private Device device;*/
-	@Column(name="DEVICE_ID")
-	private String deviceId;
+	private Device device;
 
 	public CheckRecord() {
 	}
@@ -182,13 +139,13 @@ public class CheckRecord implements Serializable {
 	public void setRecordNum(String recordNum) {
 		this.recordNum = recordNum;
 	}
-	
-	public String getDeviceId() {
-		return deviceId;
+
+	public Device getDevice() {
+		return this.device;
 	}
 
-	public void setDeviceId(String deviceId) {
-		this.deviceId = deviceId;
+	public void setDevice(Device device) {
+		this.device = device;
 	}
 
 }

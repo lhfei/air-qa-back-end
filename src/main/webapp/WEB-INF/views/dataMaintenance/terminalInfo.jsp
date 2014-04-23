@@ -7,7 +7,7 @@
 </head>
 <body>
 	<table class="easyui-datagrid" style="width: 700px; height: 250px"
-		data-options="fit:true,pagination:true,singleSelect:true,method:'post',toolbar:'#tb'">
+		data-options="fit:true,singleSelect:true,url:'datagrid_data1.json',method:'post',toolbar:'#tb'">
 		<thead>
 			<tr>
 				<th data-options="field:'itemid',width:80">流水号</th>
@@ -27,19 +27,17 @@
 		</div>
 	</div>
 	
-	<div id="dlg" class="easyui-dialog" title="新增终端绑定" style="width:480px;height:250px;padding:10px">
-		<form>
-		<input type="hidden" name="userId" value="${user.userId}">
+	<div id="dlg" class="easyui-dialog" title="新增终端绑定" style="width:450px;height:200px;padding:10px">
          <table>
          	<tr>
-         		<td>用户</td>
-         		<td><input type="text" name="userName" value="${user.userName}" readonly></td>
          		<td>终端ID</td>
          		<td><input type="text"></td>
+         		<td></td>
+         		<td></td>
          	</tr>
           	<tr>
          		<td>开始日期</td>
-         		<td><input class="easyui-datebox"></input></td>
+         		<td style="padding-left: 3px"><input class="easyui-datebox"></input></td>
          		<td>结束日期</td>
          		<td><input class="easyui-datebox"></input></td>
          	</tr>
@@ -47,14 +45,7 @@
          		<td>备注</td>
          		<td colspan="3"><textarea rows="4" cols="48"></textarea></td>
          	</tr>
-         	<tr>
-         		<td colspan="4" style="text-align: center;">
-         			<a href="#" class="easyui-linkbutton" >保存</a>
-					<a href="#" class="easyui-linkbutton" >取消</a>
-				</td>
-         	</tr>
          </table>
-         </form>
     </div>
 </body>
 </html>

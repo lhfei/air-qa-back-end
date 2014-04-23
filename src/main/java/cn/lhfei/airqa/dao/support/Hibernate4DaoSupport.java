@@ -65,7 +65,9 @@ public abstract class Hibernate4DaoSupport<E, I extends Serializable> implements
     @Override
     public List<E> findByCriteria(Criterion criterion) {
         Criteria criteria = getCurrentSession().createCriteria(entityClass);
-        criteria.add(criterion);
+        if(criterion != null){
+        	criteria.add(criterion);	
+        }
         return criteria.list();
     }
     
@@ -85,6 +87,10 @@ public abstract class Hibernate4DaoSupport<E, I extends Serializable> implements
     	page.setResult(criteria.list());
     	return page;
     }
+    
+    public Criteria getCriteria() {
+		return getCurrentSession().createCriteria(entityClass);
+	}
    
     // PRIVATE FIELDS
     

@@ -16,32 +16,42 @@
 
 package cn.lhfei.airqa.dao.impl;
 
+import java.util.List;
 
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import cn.lhfei.airqa.dao.IUserDao;
+import cn.lhfei.airqa.dao.IRegionDao;
 import cn.lhfei.airqa.dao.support.Hibernate4DaoSupport;
-import cn.lhfei.airqa.entity.User;
+import cn.lhfei.airqa.entity.Region;
 
 /**
  * @version 0.1
- *
+ * 
  * @author Hefei Li
- *
+ * 
  * @since Apr 7, 2014
  */
 @Repository
 @Transactional
-public class UserDao extends Hibernate4DaoSupport<User, Integer> implements IUserDao {
+public class RegionDao extends Hibernate4DaoSupport<Region, Integer> implements
+		IRegionDao {
 
-	protected UserDao() {
-		super(User.class);
+	protected RegionDao() {
+		super(Region.class);
 	}
 
 	@Override
-	public void create(User user) {
-		super.saveOrUpdate(user);
+	public List<Region> findRegion(int level, int pid) {
+		Criteria criteria = getCriteria();
+
+		criteria.add(Restrictions.eq("pid", pid)).add(
+				Restrictions.eq("level", level));
+
+		return criteria.list();
 	}
 
 }

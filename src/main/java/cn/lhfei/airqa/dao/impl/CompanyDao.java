@@ -16,32 +16,48 @@
 
 package cn.lhfei.airqa.dao.impl;
 
-
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import cn.lhfei.airqa.dao.IUserDao;
+import cn.lhfei.airqa.common.Constants;
+import cn.lhfei.airqa.dao.ICompanyDao;
 import cn.lhfei.airqa.dao.support.Hibernate4DaoSupport;
-import cn.lhfei.airqa.entity.User;
+import cn.lhfei.airqa.entity.Company;
+import cn.lhfei.airqa.web.model.PageModel;
 
 /**
  * @version 0.1
- *
+ * 
  * @author Hefei Li
- *
+ * 
  * @since Apr 7, 2014
  */
 @Repository
 @Transactional
-public class UserDao extends Hibernate4DaoSupport<User, Integer> implements IUserDao {
+public class CompanyDao extends Hibernate4DaoSupport<Company, Integer>
+		implements ICompanyDao {
 
-	protected UserDao() {
-		super(User.class);
+	protected CompanyDao() {
+		super(Company.class);
 	}
 
 	@Override
-	public void create(User user) {
-		super.saveOrUpdate(user);
+	public PageModel findCompany(int page, int rows) {
+		PageModel pageModel = new PageModel();
+
+		Criteria criteria = getCriteria();
+		criteria.add(Restrictions.ne("dataStatus", Constants.STATUS_DELETE));
+
+		// 统计符合条件数据的总数
+		int total = criteria.list().size();
+		pageModel.setTotal(total);
+
+		criteria.setFirstResult((page - 1) * rows).setMaxResults(rows);
+		pageModel.setRows(criteria.list());
+
+		return pageModel;
 	}
 
 }

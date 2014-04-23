@@ -8,29 +8,74 @@
     },{
 	    "id": 12,
 	    "text": "终端绑定",
-	     "attributes":{"url":"user/bind"}
+	     "attributes":{"url":"user/terminalBinder"}
     },{
         "id": 13,
         "text": "账号管理",
         "attributes":{"url":"user/manager"}
      }]
 },{
-	"id": 2,
+    "id": 2,
     "text": "主数据维护",
     "children": [{
-        "id": 11,
+        "id": 21,
         "text": "厂家信息维护",
-        "attributes":{"url":"user/userInfo"}
+        "attributes":{"url":"company/factoryInfo"}
     },{
-	    "id": 12,
+	    "id": 22,
 	    "text": "终端信息维护",
 	     "attributes":{"url":"user/bind"}
     },{
-        "id": 13,
+        "id": 23,
         "text": "客户信息维护",
         "attributes":{"url":"user/manager"}
      },{
-        "id": 13,
+        "id": 24,
         "text": "终端绑定管理",
         "attributes":{"url":"user/manager"}
      }]
+},{
+    "id": 3,
+    "text": "业务申请",
+    "children": [{
+        "id": 31,
+        "text": "空气检测申请",
+        "attributes":{"url":"checkRecord/applyingCheck"}
+    },{
+	    "id": 32,
+	    "text": "空气检测申请成功",
+	     "attributes":{"url":"user/bind"}
+    }]
+},{
+    "id": 4,
+    "text": "业务办理",
+    "children": [{
+        "id": 41,
+        "text": "检测工作管理",
+        "attributes":{"url":"user/userInfo"}
+    },{
+	    "id": 42,
+	    "text": "检测单明细维护",
+	     "attributes":{"url":"user/bind"}
+    }]
+},{
+    "id": 5,
+    "text": "检测报告",
+    "children": [{
+        "id": 51,
+        "text": "日常监测报表（Customer）",
+        "attributes":{"url":"user/userInfo"}
+    },{
+	    "id": 52,
+	    "text": "日常检测报表(In)",
+	     "attributes":{"url":"user/bind"}
+    },{
+        "id": 53,
+        "text": "常规监测报表（Customer）",
+        "attributes":{"url":"user/userInfo"}
+    },{
+	    "id": 54,
+	    "text": "常规检测报表(In)",
+	     "attributes":{"url":"user/bind"}
+    }]
+}]

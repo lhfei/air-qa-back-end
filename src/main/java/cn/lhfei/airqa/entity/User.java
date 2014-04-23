@@ -4,53 +4,44 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
 
-
 /**
  * The persistent class for the user database table.
  * 
  */
 @Entity
-@NamedQuery(name="User.findAll", query="SELECT u FROM User u")
-public class User implements Serializable {
+@NamedQuery(name = "User.findAll", query = "SELECT u FROM User u")
+public class User extends BaseAttr implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="USER_ID")
+	@Column(name = "USER_ID")
 	private int userId;
 
-	@Column(name="ACTIVITY_STATUS")
+	@Column(name = "ACTIVITY_STATUS")
 	private int activityStatus;
 
 	private String city;
 
 	private String county;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="CREATE_TIME")
-	private Date createTime;
-
-	@Column(name="DATA_STATUS")
-	private int dataStatus;
-
 	private String email;
 
 	private int gender;
 
-	@Column(name="HOUSE_NUMBER")
+	@Column(name = "HOUSE_NUMBER")
 	private String houseNumber;
 
-	@Column(name="ID_CARD")
+	@Column(name = "ID_CARD")
 	private String idCard;
 
-	@Column(name="KPI_ID")
+	@Column(name = "KPI_ID")
 	private int kpiId;
 
 	private String mobile;
-	
-	@Column(name="ORIGN")
+
 	private int orign;
 
-	@Column(name="ORIGN_CODE")
+	@Column(name = "ORIGN_CODE")
 	private String orignCode;
 
 	private String password;
@@ -61,10 +52,10 @@ public class User implements Serializable {
 
 	private String remark;
 
-	@Column(name="USER_ALIAS")
+	@Column(name = "USER_ALIAS")
 	private String userAlias;
 
-	@Column(name="USER_NAME")
+	@Column(name = "USER_NAME")
 	private String userName;
 
 	private String zone;
@@ -102,22 +93,6 @@ public class User implements Serializable {
 
 	public void setCounty(String county) {
 		this.county = county;
-	}
-
-	public Date getCreateTime() {
-		return this.createTime;
-	}
-
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
-	}
-
-	public int getDataStatus() {
-		return this.dataStatus;
-	}
-
-	public void setDataStatus(int dataStatus) {
-		this.dataStatus = dataStatus;
 	}
 
 	public String getEmail() {

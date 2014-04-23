@@ -16,8 +16,10 @@
 
 package cn.lhfei.airqa.dao;
 
+import java.util.List;
+
 import cn.lhfei.airqa.dao.support.AbstractHibernate4DaoSupport;
-import cn.lhfei.airqa.entity.User;
+import cn.lhfei.airqa.entity.Region;
 
 /**
  * @version 0.1
@@ -26,7 +28,6 @@ import cn.lhfei.airqa.entity.User;
  *
  * @since Apr 7, 2014
  */
-public interface IUserDao extends AbstractHibernate4DaoSupport<User,Integer>{
-
-	 void create(User user);
+public interface IRegionDao extends AbstractHibernate4DaoSupport<Region,Integer>{
+	List<Region> findRegion(int level, int pid);
 }

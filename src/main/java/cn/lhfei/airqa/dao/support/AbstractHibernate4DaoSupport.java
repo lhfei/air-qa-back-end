@@ -33,10 +33,38 @@ import cn.lhfei.airqa.common.Page;
 
 public interface AbstractHibernate4DaoSupport<E, I extends Serializable> {
 
+    /**
+     * 方法描述：<根据ID查询实体>
+     *
+     * @param id
+     * @return
+     */
     E findById(I id);
+    /**
+     * 方法描述：<保存以及更新实体>
+     *
+     * @param e
+     */
     void saveOrUpdate(E e);
+    /**
+     * 方法描述：<删除实体>
+     *
+     * @param e
+     */
     void delete(E e);
+    /**
+     * 方法描述：<根据查询条件查询实体>
+     *
+     * @param criterion
+     * @return
+     */
     List<E> findByCriteria(Criterion criterion);
-    
-    Page findPageByCriteria(Criterion criterion,Page<E> page);
+    /**
+     * 方法描述：<根据查询条件查询实体分页对象>
+     *
+     * @param criterion
+     * @param page
+     * @return
+     */
+    Page<E> findPageByCriteria(Criterion criterion,Page<E> page);
 }

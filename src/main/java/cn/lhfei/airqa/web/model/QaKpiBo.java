@@ -13,7 +13,7 @@ public class QaKpiBo implements Serializable {
 	/**
 	 * 指标ID
 	 */
-	private int kpiId;
+	private String kpiId;
 
 	/**
 	 * 指标名称
@@ -38,16 +38,16 @@ public class QaKpiBo implements Serializable {
 	/**
 	 * 记录ID
 	 */
-	private int recordId;
+	private String recordId;
 
 	public QaKpiBo() {
 	}
 
-	public int getKpiId() {
+	public String getKpiId() {
 		return this.kpiId;
 	}
 
-	public void setKpiId(int kpiId) {
+	public void setKpiId(String kpiId) {
 		this.kpiId = kpiId;
 	}
 
@@ -83,11 +83,11 @@ public class QaKpiBo implements Serializable {
 		this.kpiValue = kpiValue;
 	}
 
-	public int getRecordId() {
+	public String getRecordId() {
 		return this.recordId;
 	}
 
-	public void setRecordId(int recordId) {
+	public void setRecordId(String recordId) {
 		this.recordId = recordId;
 	}
 

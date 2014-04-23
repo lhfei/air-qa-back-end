@@ -2,6 +2,7 @@
  * 创建指标值属性tr
  */
 var contentArr = [{"attrname":"kbiName"},{"attrname":"kpiCode"},{"attrname":"kpiRemark"}];
+var kpiRowCount = 0;
 $(function() {
 	getRecordNum();
 	var recordNum = $("input[name='recordNum']").val();
@@ -10,6 +11,10 @@ $(function() {
 		queryParams:{
 			recordNum:recordNum
 		}
+	});
+	$('#dataFormDiv').dialog({
+	    width: 610,
+	    height: 480
 	});
 	addTableRow();
 	resizeDiv('centerArea');
@@ -22,27 +27,12 @@ $(function() {
  */
 function getRecordNum(){
 	$.getJSON('./getRecordNum?type=H',function(data){
-		$("input[name='recordNum']").val(data);
+		if(data != null){
+			$("input[name='recordNum']").val(data.recordNum);
+		}
 	});
 }
 
-/**
- * 获取表格数据
- * @returns {Array}
- */
-function getData() {
-	var rows = [];
-	for (var i = 1; i <= 20; i++) {
-		rows.push({
-			recordNum : 'recordNum' + i,
-			type : "家庭申请",
-			agent : '王珊 ' + i,
-			operatedTime : $.fn.datebox.defaults.formatter(new Date()),
-			phase : "申请"+i
-		});
-	}
-	return rows;
-}
 
 /**
  * 删除指标值行
@@ -52,6 +42,7 @@ function removeTableRow(target){
 	$.messager.confirm('提示！','您确认删除该条记录吗?',function(r){
 	    if (r){
 	    	$(target).parent().parent().remove();
+	    	kpiRowCount--;
 	    }
 	});
 	
@@ -67,6 +58,10 @@ function saveTableRow(target){
 	}
 }
 
+/**
+ * grid高宽自适应
+ * @param divId
+ */
 function resizeDiv(divId){
 	var gridwidth = $("#"+divId).width();
 	var gridheight = $("#"+divId).height() -90;
@@ -74,37 +69,6 @@ function resizeDiv(divId){
 		width:gridwidth,
 		height:gridheight
 	});
-}
-
-function pagerFilter(data) {
-	if (typeof data.length == 'number' && typeof data.splice == 'function') { // is
-																				// array
-		data = {
-			total : data.length,
-			rows : data
-		};
-	}
-	var dg = $(this);
-	var opts = dg.datagrid('options');
-	var pager = dg.datagrid('getPager');
-	pager.pagination({
-		onSelectPage : function(pageNum, pageSize) {
-			opts.pageNumber = pageNum;
-			opts.pageSize = pageSize;
-			pager.pagination('refresh', {
-				pageNumber : pageNum,
-				pageSize : pageSize
-			});
-			dg.datagrid('loadData', data);
-		}
-	});
-	if (!data.originalRows) {
-		data.originalRows = (data.rows);
-	}
-	var start = (opts.pageNumber - 1) * parseInt(opts.pageSize);
-	var end = start + parseInt(opts.pageSize);
-	data.rows = (data.originalRows.slice(start, end));
-	return data;
 }
 
 /**
@@ -119,7 +83,11 @@ function addData(){
  * 修改
  */
 function editData(){
-	
+	var rows = $("#recordList").datagrid("getSelections");
+	if(rows.length == 1){
+	}else{
+		$.messager.alert('提示！','请选择一条记录！','info');
+	}
 }
 
 /**
@@ -140,14 +108,13 @@ function exportData(){
  * 保存数据
  */
 function saveData(){
+	$('#saveBtn').linkbutton('disable');
 	$("#applyingCheckForm").form('submit',{
 		url:'./createCheck',
 		onSubmit:function(){
 		},success:function(data){
-			alert(data);
-			if(data == true){
-				
-			}
+			$('#saveBtn').linkbutton('enable');
+			clearData();
 		}
 	});
 }
@@ -156,6 +123,6 @@ function saveData(){
  * 清理数据
  */
 function clearData(){
-	
+	$("#applyingCheckForm").form('clear');
 }
 

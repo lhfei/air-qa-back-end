@@ -2,12 +2,12 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>终端绑定</title>
+<title>终端绑定管理</title>
 <%@ include file="../commons/taglib.jsp"%>
 </head>
 <body>
 	<table class="easyui-datagrid" style="width: 700px; height: 250px"
-		data-options="fit:true,pagination:true,singleSelect:true,method:'post',toolbar:'#tb'">
+		data-options="fit:true,singleSelect:true,url:'datagrid_data1.json',method:'post',toolbar:'#tb'">
 		<thead>
 			<tr>
 				<th data-options="field:'itemid',width:80">流水号</th>
@@ -15,6 +15,7 @@
 				<th data-options="field:'listprice',width:100">终端</th>
 				<th data-options="field:'unitcost',width:150">开始时间</th>
 				<th data-options="field:'attr1',width:150">结束时间</th>
+				<th data-options="field:'attr1',width:150">有效</th>
 				<th data-options="field:'status',width:60,align:'center'">备注</th>
 			</tr>
 		</thead>
@@ -24,22 +25,29 @@
 		<div style="margin-bottom: 5px">
 			<a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true">增加</a>
 			<a href="#" class="easyui-linkbutton" iconCls="icon-edit"plain="true">删除</a> 
+			<a href="#" class="easyui-linkbutton" iconCls="icon-edit"plain="true">到处Excel</a> 
+		</div>
+		<div>
+			流水号：<input type="text">
+			客户：<input type="text">
+			终端：<input type="text">
+			是否有效：<select class="easyui-combobox" style="width:200px;"></select>
+			开始时间： <input class="easyui-datebox"> 结束时间： <input class="easyui-datebox">
+			<a href="#" class="easyui-linkbutton"  plain="true">查询</a>
 		</div>
 	</div>
 	
-	<div id="dlg" class="easyui-dialog" title="新增终端绑定" style="width:480px;height:250px;padding:10px">
-		<form>
-		<input type="hidden" name="userId" value="${user.userId}">
+	<div id="dlg" class="easyui-dialog" title="新增终端绑定" style="width:450px;height:200px;padding:10px">
          <table>
          	<tr>
-         		<td>用户</td>
-         		<td><input type="text" name="userName" value="${user.userName}" readonly></td>
          		<td>终端ID</td>
          		<td><input type="text"></td>
+         		<td></td>
+         		<td></td>
          	</tr>
           	<tr>
          		<td>开始日期</td>
-         		<td><input class="easyui-datebox"></input></td>
+         		<td style="padding-left: 3px"><input class="easyui-datebox"></input></td>
          		<td>结束日期</td>
          		<td><input class="easyui-datebox"></input></td>
          	</tr>
@@ -47,14 +55,7 @@
          		<td>备注</td>
          		<td colspan="3"><textarea rows="4" cols="48"></textarea></td>
          	</tr>
-         	<tr>
-         		<td colspan="4" style="text-align: center;">
-         			<a href="#" class="easyui-linkbutton" >保存</a>
-					<a href="#" class="easyui-linkbutton" >取消</a>
-				</td>
-         	</tr>
          </table>
-         </form>
     </div>
 </body>
 </html>

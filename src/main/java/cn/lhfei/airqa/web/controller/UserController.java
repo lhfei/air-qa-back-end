@@ -2,12 +2,13 @@ package cn.lhfei.airqa.web.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import cn.lhfei.airqa.web.model.SimpleModel;
+import cn.lhfei.airqa.service.IUserService;
+import cn.lhfei.airqa.web.model.UserModel;
 
 /**
  * Handles requests for the application home page.
@@ -24,15 +25,19 @@ public class UserController {
 		return "user/userInfo";
 	}
 
-	@RequestMapping(value = "/userInfo", method = RequestMethod.POST)
-	public String create(@RequestBody SimpleModel model) {
-		logger.debug(model.toString());
-		return "";
+	@RequestMapping(value = "/userInfoForm")
+	public @ResponseBody boolean userInfoForm(UserModel user) {
+		logger.debug("维护个人信息");
+		userService.updateUserInfo(user);
+		return true;
 	}
 
 	@RequestMapping(value = "/terminalBinder")
 	public String terminalBinder() {
 		return "user/terminalBinder";
 	}
+
+	@Autowired
+	private IUserService userService;
 
 }
