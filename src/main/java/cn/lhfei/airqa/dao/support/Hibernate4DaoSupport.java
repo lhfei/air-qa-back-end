@@ -22,6 +22,7 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Projections;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -91,6 +92,23 @@ public abstract class Hibernate4DaoSupport<E, I extends Serializable> implements
     public Criteria getCriteria() {
 		return getCurrentSession().createCriteria(entityClass);
 	}
+    
+    public void batchInsert(List<E> list) {
+    	Session session = sessionFactory.openSession();
+    	Transaction tx = session.beginTransaction();
+    	   
+    	for ( int i=0; i<list.size(); i++ ) {
+    	    session.save(list.get(i));
+    	    if ( i % 50 == 0 ) { //50, same as the JDBC batch size
+    	        //flush a batch of inserts and release memory:
+    	        session.flush();
+    	        session.clear();
+    	    }
+    	}
+    	   
+    	tx.commit();
+    	session.close();
+    }
    
     // PRIVATE FIELDS
     

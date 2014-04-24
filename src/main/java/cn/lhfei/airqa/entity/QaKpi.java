@@ -14,26 +14,6 @@ import javax.persistence.*;
 public class QaKpi implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="KPI_ID")
-	private int kpiId;
-
-	@Column(name="KBI_NAME")
-	private String kbiName;
-
-	@Column(name="KPI_CODE")
-	private String kpiCode;
-
-	@Column(name="KPI_REMARK")
-	private String kpiRemark;
-
-	@Column(name="KPI_VALUE")
-	private String kpiValue;
-
-	@Column(name="RECORD_ID")
-	private int recordId;
-
 	public QaKpi() {
 	}
 
@@ -85,4 +65,23 @@ public class QaKpi implements Serializable {
 		this.recordId = recordId;
 	}
 
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="KPI_ID")
+	private int kpiId;
+
+	@Column(name="KBI_NAME")
+	private String kbiName;
+
+	@Column(name="KPI_CODE")
+	private String kpiCode;
+
+	@Column(name="KPI_REMARK")
+	private String kpiRemark;
+
+	@Column(name="KPI_VALUE")
+	private String kpiValue;
+
+	@Column(name="RECORD_ID")
+	private int recordId;
 }

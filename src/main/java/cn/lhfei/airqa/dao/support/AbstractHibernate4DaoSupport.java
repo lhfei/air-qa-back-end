@@ -67,4 +67,9 @@ public interface AbstractHibernate4DaoSupport<E, I extends Serializable> {
      * @return
      */
     Page<E> findPageByCriteria(Criterion criterion,Page<E> page);
+    
+    /**
+     * @param list
+     */
+    void batchInsert(List<E> list);
 }

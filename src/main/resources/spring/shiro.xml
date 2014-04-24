@@ -21,6 +21,7 @@
 				/login* =anon
 				/register*=anon
 				/noperms= anon
+				/restful/push=anon
 				/** = authc
 			</value>
 		</property>
