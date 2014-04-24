@@ -34,7 +34,7 @@ public class User extends BaseAttr implements Serializable {
 	@Column(name = "ID_CARD")
 	private String idCard;
 
-	@Column(name = "KPI_ID")
+	//@Column(name = "KPI_ID")
 	private int kpiId;
 
 	private String mobile;
